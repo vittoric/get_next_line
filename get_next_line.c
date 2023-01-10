@@ -6,7 +6,7 @@
 /*   By: vcodrean <vcodrean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:18:01 by vcodrean          #+#    #+#             */
-/*   Updated: 2023/01/05 18:17:58 by vcodrean         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:17:53 by vcodrean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	*get_next_line(int fd)
 {
 	int		to_read;
-	char	*p;
 	char	*alocate;
 
 	alocate = malloc(sizeof(char) * (BUFFER_SIZE +1));
@@ -30,8 +29,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	alocate[to_read] = '\0';
-	p = alocate;
-	return (p);
+	return (alocate);
 }
 
 int	main(void)
