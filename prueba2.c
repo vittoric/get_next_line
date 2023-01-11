@@ -1,101 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prueba2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vcodrean <vcodrean@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/11 13:14:54 by vcodrean          #+#    #+#             */
+/*   Updated: 2023/01/11 13:25:22 by vcodrean         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line.h"
+#define BUF_SIZE 8
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*stash;
-// primero verifica si el descriptor del archivo es válido o no
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	static char		storage[1024];
+	static int		len;
+	int				ret;
+	char			*new_line;
+	char			*line;
+
+	len = 0;
+	ret = read(fd, storage + len, BUF_SIZE);
+	//*new_line = NULL;
+	if (fd < 0)
+		return (NULL);
+	while (!new_line && ret > 0)
 	{
-		free(stash);
-		stash = NULL;
-		return (NULL);
+		len += ret;
+		storage[len] = '\0';
+		new_line = strchr(storage, '\n');
 	}
-	//leer datos del archivo y agregarlos a una variable estática
-	stash = ft_read_and_stash(fd, stash);
-	if (!stash)
+	if (ret < 0 || !len)
 		return (NULL);
-	line = ft_get_line(stash);
-	stash = ft_stash(stash);
+	*new_line = '\0';
+	line = strdup(storage);
+	len -= new_line - storage + 1;
+	memmove(storage, new_line + 1, len + 1);
 	return (line);
 }
 
-char	*ft_get_line(char *stash)
+int	main(void)
 {
-	int			i;
-	static char	*str;
+	int		fd;
+	char	*line;
 
-	i = 0;
-	if (!stash[i])
-		return (NULL);
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	str = malloc(sizeof(char) * (i + 2));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-	{
-		str[i] = stash[i];
-		i++;
-	}
-	if (stash[i] == '\n')
-	{
-		str[i] = stash[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	fd = open("text.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf ("%s", line);
+	line = get_next_line(fd);
+	printf ("%s", line);
+	free(line);
+	close(fd);
+	return (0);
 }
-
-
-char	*ft_stash(char *stash)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (!stash[i])
-	{
-		free(stash);
-		return (NULL);
-	}
-	str = malloc(sizeof(char) * (ft_strlen(stash) - i + 1));
-	if (!str)
-		return (NULL);
-	i++;
-	j = 0;
-	while (stash[i])
-		str[j++] = stash[i++];
-	str[j] = '\0';
-	free (stash);
-	return (str);
-}
-
-
-char	*ft_read_and_stash(int fd, char *stash)
-{
-	char	*buf;
-	int		readed;
-
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
-		return (NULL);
-	readed = 1;
-	while (!ft_strchr(stash, '\n') && readed != 0)
-	{
-		readed = read(fd, buf, BUFFER_SIZE);
-		if (readed < 0)
-		{
-			free(buf);
-			return (NULL);
-		}
-		buf[readed] = '\0';
-		stash = ft_strjoin(stash, buf);
-	}
-	free(buf);
-	return (stash);
-}
-
