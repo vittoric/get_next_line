@@ -6,13 +6,12 @@
 /*   By: vcodrean <vcodrean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:49:27 by vcodrean          #+#    #+#             */
-/*   Updated: 2023/01/13 14:03:51 by vcodrean         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:54:26 by vcodrean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchar(char *str, int c);
 
 char	*get_next_line(int fd)
 {
@@ -45,7 +44,7 @@ char	*readbuff(int fd, char *depot)
 	if (!buffer)
 		return (ft_free(&depot));
 	buffer[0] = '\0';
-	while (to_read > 0 && ! ft_strchar(buffer, '\n'))
+	while (to_read > 0 && !ft_strchar(buffer, '\n'))
 	{
 		to_read = read (fd, buffer, BUFFER_SIZE);
 		if (to_read > 0)
