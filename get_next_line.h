@@ -6,7 +6,7 @@
 /*   By: vcodrean <vcodrean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:15:59 by vcodrean          #+#    #+#             */
-/*   Updated: 2023/01/11 13:26:11 by vcodrean         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:12:59 by vcodrean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,21 @@
 #  undef BUFFER_SIZE
 #  define BUFFER_SIZE 0
 # endif
+
+# include<unistd.h>
+# include<stdio.h>
+# include<stdlib.h>
+# include<fcntl.h>
+# include<limits.h>
+
+char	*get_next_line(int fd);
+char	*readbuff(int fd, char *depot);
+char	*new_line(char *depot);
+char	*ft_strchr(char *str, int c);
+char	*ft_free(char **str);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+size_t	ft_strlen(char *str);
+char	*clean_depot(char *depot);
 
 #endif
