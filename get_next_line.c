@@ -6,20 +6,18 @@
 /*   By: vcodrean <vcodrean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:49:27 by vcodrean          #+#    #+#             */
-/*   Updated: 2023/01/13 15:54:26 by vcodrean         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:37:50 by vcodrean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
 char	*get_next_line(int fd)
 {
-	char	*line;
-	char	*depot;
+	char			*line;
+	static char		*depot = NULL;
 
-	depot = 0;
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if ((depot && !ft_strchar(depot, '\n')) || !depot)
 		depot = readbuff(fd, depot);
@@ -52,8 +50,6 @@ char	*readbuff(int fd, char *depot)
 			buffer[to_read] = '\0';
 			depot = ft_strjoin(depot, buffer);
 		}
-		if (to_read == 0)
-			break ;
 	}
 	free(buffer);
 	if (to_read == -1)

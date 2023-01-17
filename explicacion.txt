@@ -1,0 +1,86 @@
+La función "get_next_line" recibe un argumento "fd", que es un descriptor de archivo. 
+La función se utiliza para leer líneas de un archivo.
+
+"static char *depot = NULL;" es una declaración de una variable estática llamada "depot" 
+que es un puntero a un carácter (es decir, una cadena de caracteres) y se inicializa en NULL. 
+La palabra clave "static" indica que esta variable solo está disponible dentro del archivo 
+donde se declaró y no puede ser accedida desde otros archivos. El valor NULL indica que el 
+puntero "depot" no está apuntando a ninguna posición de memoria en particular en este momento.
+
+La función tiene una variable "line" que es un puntero a caracteres y una variable "depot" 
+que es un puntero estático a caracteres. La variable "depot" se utiliza para almacenar los 
+caracteres leídos del archivo que no forman parte de la línea actual.
+
+La función comprueba si el valor de "fd" es menor que cero o si el tamaño del buffer es menor
+o igual a cero. Si esto es cierto, la función devuelve "NULL".
+
+La función luego verifica si "depot" tiene un carácter '\n' o si "depot" es nulo. Si es cierto,
+se llama a la función "readbuff" para leer más caracteres del archivo y agregarlos a "depot".
+
+Si "depot" es nulo, la función devuelve "NULL".
+
+La función luego llama a la función "new_line" para crear una nueva línea con los caracteres 
+almacenados en "depot". Si "new_line" devuelve "NULL", la función llama a la función "ft_free" 
+para liberar la memoria de "depot" y devuelve "NULL".
+
+La función luego llama a la función "clean_depot" para limpiar "depot" de los caracteres que 
+se utilizaron para crear la nueva línea. Finalmente, la función devuelve la nueva línea.
+
+
+Funncion readbuff
+Esta función lee un archivo (especificado por el descriptor de archivo "fd") y almacena el 
+contenido en un buffer temporal llamado "buffer". Utiliza la función "read" para leer el 
+archivo en bloques de tamaño "BUFFER_SIZE" hasta que se encuentra un caracter de nueva línea 
+('\n') o se llega al final del archivo. Cada bloque de contenido leído se concatena con el 
+contenido anterior en "depot" mediante la función "ft_strjoin". Finalmente, se libera la 
+memoria asignada a "buffer" y se devuelve "depot" como resultado. Si el descriptor de archivo
+es inválido o ocurre un error de lectura, se libera la memoria asignada a "depot" y se 
+devuelve NULL.
+
+
+La función "new_line" toma una cadena de caracteres llamada "depot" como argumento. Declara 
+un puntero de caracteres llamado "line" y otro puntero de caracteres llamado "p". También 
+declara una variable entera llamada "len".
+
+Luego, utiliza la función "ft_strchar" para buscar el carácter '\n' en la cadena "depot" y
+asigna su posición a "p". La variable "len" se calcula como la diferencia entre "p" y 
+"depot" más 1.
+
+Luego, se utiliza la función "ft_substr" para extraer una subcadena de "depot" desde 
+el índice 0 hasta "len" y se asigna a "line". Si "line" es nulo, la función devuelve 
+NULL. De lo contrario, devuelve la cadena "line".
+
+
+La función "clean_depot" recibe como argumento un puntero a una cadena de caracteres 
+(depot) y retorna un puntero a una nueva cadena de caracteres. La función tiene tres 
+variables, "new_depot" que es un puntero a una cadena de caracteres que almacenará la 
+nueva cadena, "p" que es un puntero a una cadena de caracteres que se usará para buscar
+el caractér '\n' en "depot", y "len" que es un entero que almacenará la longitud de 
+la nueva cadena.
+
+Primero, se busca el caractér '\n' en "depot" usando la función "ft_strchar" y se 
+almacena el resultado en "p". Si "p" es NULL (es decir, si no se encontró el caractér 
+'\n' en "depot"), se asigna NULL a "new_depot" y se libera la memoria de "depot" usando 
+la función "ft_free" antes de retornar.
+
+Si "p" no es NULL, se calcula la longitud de la nueva cadena como (p - depot) + 1. 
+Luego, se comprueba si "depot" en la posición "len" es un caractér nulo. Si es así, 
+se libera la memoria de "depot" y se retorna.
+
+Si "depot" en la posición "len" no es un caractér nulo, se crea una nueva cadena 
+"new_depot" usando la función "ft_substr" que extrae una subcadena de "depot" desde 
+la posición "len" hasta el final de la cadena. Luego, se libera la memoria de "depot" 
+usando "ft_free" y se retorna "new_depot". Si "ft_substr" retorna NULL, se retorna NULL.
+
+
+La función "ft_free" recibe como parámetro un puntero a un puntero de tipo char,
+es decir, una variable que almacena la dirección de memoria de otra variable de 
+tipo char.
+
+La primera línea de la función utiliza la función "free" para liberar la memoria 
+asignada a la variable a la que apunta el puntero recibido como parámetro.
+
+La segunda línea asigna el valor NULL al puntero recibido como parámetro, lo 
+que significa que ya no apunta a ninguna dirección de memoria.
+
+La tercera y última línea de la función devuelve el valor NULL.

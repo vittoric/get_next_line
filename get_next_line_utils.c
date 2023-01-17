@@ -6,7 +6,7 @@
 /*   By: vcodrean <vcodrean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:11:29 by vcodrean          #+#    #+#             */
-/*   Updated: 2023/01/13 14:20:42 by vcodrean         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:42:56 by vcodrean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	{
 		s1 = malloc(sizeof(char) + 1);
 		if (!s1)
-			return (0);
+			return (NULL);
 		s1[0] = 0;
 	}
 	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
@@ -41,29 +41,29 @@ char	*ft_strjoin(char *s1, char *s2)
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
-	char	*str;
 	size_t	i;
+	char	*res;
 
+	i = 0;
 	if (!s)
 		return (0);
 	if (start > ft_strlen(s))
 	{
-		str = malloc(sizeof(char) * (1));
-		if (!str)
+		res = malloc(sizeof(char) * (1));
+		if (!res)
 			return (NULL);
-		str[0] = '\0';
-		return (str);
+		res[0] = '\0';
+		return (res);
 	}
 	if (ft_strlen(s) - start < len)
 		len = ft_strlen(s) - start;
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
+	res = malloc(sizeof(char) * (len + 1));
+	if (!res)
 		return (NULL);
-	i = 0;
 	while (start < ft_strlen(s) && i < len && s[start])
-		str[i++] = s[start++];
-	str[i] = '\0';
-	return (str);
+		res[i++] = s[start++];
+	res[i] = '\0';
+	return (res);
 }
 
 size_t	ft_strlen(char *str)
