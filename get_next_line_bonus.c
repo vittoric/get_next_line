@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcodrean <vcodrean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 12:49:27 by vcodrean          #+#    #+#             */
-/*   Updated: 2023/01/17 12:37:50 by vcodrean         ###   ########.fr       */
+/*   Created: 2023/01/18 15:45:05 by marvin            #+#    #+#             */
+/*   Updated: 2023/01/18 15:45:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
 	char			*line;
-	static char		*depot = NULL;
+	static char		*depot[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if ((depot && !ft_strchar(depot, '\n')) || !depot)
-		depot = readbuff(fd, depot);
-	if (!depot)
+	if ((depot[fd] && !ft_strchar(depot[fd], '\n')) || !depot[fd])
+		depot[fd] = readbuff(fd, depot[fd]);
+	if (!depot[fd])
 		return (NULL);
-	line = new_line(depot);
+	line = new_line(depot[fd]);
 	if (!line)
-		return (ft_free(&depot));
-	depot = clean_depot(depot);
+		return (ft_free(&depot[fd]));
+	depot[fd] = clean_depot(depot[fd]);
 	return (line);
 }
 

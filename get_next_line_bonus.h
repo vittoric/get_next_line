@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcodrean <vcodrean@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 17:15:59 by vcodrean          #+#    #+#             */
-/*   Updated: 2023/01/16 17:41:34 by vcodrean         ###   ########.fr       */
+/*   Created: 2023/01/18 15:45:12 by marvin            #+#    #+#             */
+/*   Updated: 2023/01/18 15:45:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -24,8 +24,6 @@
 # endif
 
 # if BUFFER_SIZE > 9223372036854775806L
-#  undef BUFFER_SIZE
-#  define BUFFER_SIZE 0
 # endif
 
 char	*get_next_line(int fd);
