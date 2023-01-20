@@ -24,8 +24,6 @@
 # endif
 
 # if BUFFER_SIZE > 9223372036854775806L
-#  undef BUFFER_SIZE
-#  define BUFFER_SIZE 0
 # endif
 
 char	*get_next_line(int fd);

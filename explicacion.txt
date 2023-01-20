@@ -38,6 +38,7 @@ es inválido o ocurre un error de lectura, se libera la memoria asignada a "depo
 devuelve NULL.
 
 
+
 La función "new_line" toma una cadena de caracteres llamada "depot" como argumento. Declara 
 un puntero de caracteres llamado "line" y otro puntero de caracteres llamado "p". También 
 declara una variable entera llamada "len".
@@ -49,6 +50,8 @@ asigna su posición a "p". La variable "len" se calcula como la diferencia entre
 Luego, se utiliza la función "ft_substr" para extraer una subcadena de "depot" desde 
 el índice 0 hasta "len" y se asigna a "line". Si "line" es nulo, la función devuelve 
 NULL. De lo contrario, devuelve la cadena "line".
+
+
 
 
 La función "clean_depot" recibe como argumento un puntero a una cadena de caracteres 
@@ -84,3 +87,67 @@ La segunda línea asigna el valor NULL al puntero recibido como parámetro, lo
 que significa que ya no apunta a ninguna dirección de memoria.
 
 La tercera y última línea de la función devuelve el valor NULL.
+
+
+
+
+Funccione utils
+
+
+ft_strjoin
+Esta función toma dos cadenas, "s1" y "s2", y las concatena en una nueva cadena 
+"str". La función primero verifica si "s1" es nula, si es así, asigna memoria 
+para ella e inicializa con el carácter nulo.
+
+Luego, asigna memoria para la nueva cadena "str" asignando el tamaño de "s1" y 
+"s2" más un byte más para el carácter nulo. Si la asignación no fue exitosa 
+llama a una función llamada ft_free y pasa la dirección de s1.
+
+Luego utiliza dos bucles mientras para copiar los caracteres de "s1" y "s2" en 
+"str" y agrega un carácter nulo al final. Finalmente, libera la memoria asignada 
+para "s1" y devuelve la nueva cadena concatenada "str".
+
+Cabe mencionar que la función utiliza ft_strlen(s1) y ft_strlen(s2), que son funciones 
+personalizadas que devuelven la longitud de una cadena, en este caso, para calcular 
+la cantidad de memoria a asignar para la nueva cadena.
+
+
+ft_substr
+Esta es una función en C llamada "ft_substr" que toma una cadena "s", un entero sin 
+signo "start" y un tamaño "len" y devuelve una nueva cadena "res" que es una subcadena 
+de la cadena de entrada "s". La función primero verifica si la cadena de entrada "s" 
+es nula y si es así, devuelve nulo. Luego, verifica si el valor de "start" es mayor 
+que la longitud de la cadena de entrada "s" y si es así, asigna memoria para una nueva 
+cadena "res" con un solo carácter nulo y devuelve "res".
+
+Si "start" es menor o igual a la longitud de la cadena de entrada "s", la función luego 
+verifica si la longitud de la subcadena, "len", es mayor que los caracteres restantes de 
+la cadena de entrada "s" después del índice de inicio y si es así, ajusta "len" para ser
+igual a los caracteres restantes.
+
+Entonces, asigna memoria para la nueva cadena "res" con "len" + 1 caracteres. Si la 
+asignación no es exitosa, devuelve nulo. La función luego copia los caracteres de la 
+cadena de entrada "s" comenzando desde el índice "start" y hasta "len" caracteres en 
+la nueva cadena "res" y agrega un carácter nulo al final. Finalmente, devuelve la nueva 
+subcadena "res".
+
+
+
+
+ft_strchar
+This is a C function called "ft_strchar" that takes in two inputs, a string "str" and 
+an integer "c", it converts the integer "c" to a char type variable and then it returns 
+a pointer to the first occurrence of the character "c" in the input string "str".
+
+The function starts by initializing an integer variable "i" to 0. Then, it enters a 
+while loop that continues until the end of the string is reached, represented by the null 
+character '\0'. Inside the while loop, the function compares the current character of the 
+string, represented by "str[i]", to the input character "c". If they are equal, the 
+function returns the address of that character by taking the address of the string "str" 
+and adding the index "i" to it. If the characters are not equal, "i" is incremented and 
+the loop continues.
+
+When the end of the string is reached and the character is not found, the function checks 
+if the input character is the null character '\0' and if so, it returns the address of 
+the null character at the end of the string. If the character is not found and it's not 
+'\0' the function returns 0.

@@ -100,16 +100,3 @@ char	*ft_free(char **str)
 	*str = NULL;
 	return (NULL);
 }
-/*
-int		main(void)
-{
-	int		fd;
-	char	*line;
-
-	fd = open("text.txt", O_RDONLY);
-	line = get_next_line(fd);
-	printf ("%s", line);
-	free(line);
-	close(fd);
-	return (0);
-}*/
