@@ -6,18 +6,18 @@
 /*   By: vcodrean <vcodrean@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 12:27:10 by vcodrean          #+#    #+#             */
-/*   Updated: 2023/01/20 12:41:56 by vcodrean         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:58:06 by vcodrean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	main(void)
 {
-	int		fd1;
+	//int		fd1;
     int     fd2;
     int     fd3;
-	char	*line;
+	//char	*line;
     char	*line1;
     char	*line2;
     

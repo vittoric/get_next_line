@@ -64,7 +64,7 @@ char	*new_line(char *depot)
 	int		len;
 
 	p = ft_strchar(depot, '\n');
-	len = (p - depot) + 1;
+	len = p - depot + 1;
 	line = ft_substr(depot, 0, len);
 	if (!line)
 		return (NULL);
